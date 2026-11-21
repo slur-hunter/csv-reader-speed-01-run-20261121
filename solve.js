@@ -33,7 +33,7 @@ export function run(input) {
 
   const rows = [];
   const errors = [];
-  let columns = null;
+  let columns = header ? [] : null;
   let width = -1;
   let line = 1;
   let recordIndex = 0;
@@ -167,7 +167,7 @@ export function run(input) {
         line++;
         continue;
       }
-      errors.push({ code: 'stray_cr', line, row: rows.length });
+      errors.push({ code: 'stray_cr', line, row: (header && recordIndex === 0) ? null : rows.length });
       i++;
       continue;
     }
